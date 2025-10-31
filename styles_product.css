@@ -118,6 +118,82 @@ button {
     margin: 0 auto var(--space-xl);
 }
 
+#buyNow {
+    position: relative;
+    border: 2px solid var(--red);
+    background: transparent;
+    overflow: hidden;
+    transition: border-color 0.3s;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+    clip-path: polygon(
+      10% 0%,
+      90% 0%,
+      100% 80%,
+      50% 100%,
+      0% 80%
+    );
+  }
+  
+  #buyNow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('btn-bg-1.mp4');
+    background-size: cover;
+    opacity: 1;
+    transition: opacity 0.1s steps(10);
+    z-index: -1;
+  }
+  
+  #buyNow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('btn-bg-2.mp4');
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 0.1s steps(10);
+    z-index: -2;
+  }
+  
+  #buyNow:hover {
+    border-color: white;
+    box-shadow: 0 0 20px rgba(255, 255, 150, 0.5);
+  }
+  
+  #buyNow:hover::before {
+    opacity: 0;
+  }
+  
+  #buyNow:hover::after {
+    opacity: 1;
+  }
+  
+  #buyNow:active {
+    border-color: var(--dark-red);
+  }
+  
+  #buyNow:active::before,
+  #buyNow:active::after {
+    background: var(--dark-gray);
+    opacity: 1;
+    animation: fadeOutSteps 0.2s steps(20) forwards;
+  }
+  
+  #buyNow:active::before {
+    animation: clickFlash 0.005s, fadeOutSteps 0.2s steps(20) forwards;
+  }
+  
+  @keyframes fadeOutSteps {
+    to { opacity: 0; }
+  }
+  
+  @keyframes clickFlash {
+    0%, 100% {
+      box-shadow: inset 0 0 0 500px rgba(255, 20, 147, 0.7);
+    }
+  }
+
 /* ========================================
    HERO BUY BLOCK
    ======================================== */

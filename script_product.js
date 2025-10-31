@@ -5,8 +5,7 @@
 // State Management
 const state = {
     selectedVariant: {
-        size: 'm',
-        color: 'black',
+        model: 'black',
         bundle: 'solo'
     },
     cart: {
@@ -24,7 +23,7 @@ const state = {
 
 // Variant ID Generator
 function getVariantId() {
-    return `${state.selectedVariant.size}-${state.selectedVariant.color}-${state.selectedVariant.bundle}`;
+    return `${state.selectedVariant.model}-${state.selectedVariant.bundle}`;
 }
 
 // Price Calculator
@@ -55,8 +54,8 @@ function updatePriceDisplay() {
 function updateStickyVariant() {
     const stickyVariant = document.getElementById('stickyVariant');
     if (stickyVariant) {
-        const { size, color, bundle } = state.selectedVariant;
-        const displayText = `${size.toUpperCase()} / ${color.charAt(0).toUpperCase() + color.slice(1)} / ${bundle.charAt(0).toUpperCase() + bundle.slice(1)}`;
+        const { model, bundle } = state.selectedVariant;
+        const displayText = `${model.charAt(0).toUpperCase() + model.slice(1)} / ${bundle.charAt(0).toUpperCase() + bundle.slice(1)}`;
         stickyVariant.textContent = displayText;
     }
 }
@@ -477,19 +476,19 @@ function initStickyCart() {
 
 // Initialize Video Autoplay on Scroll
 function initVideoAutoplay() {
-    const video = document.querySelector('.hero-buy__video');
+    const videos = document.querySelectorAll('.hero-product__video, .hero-buy__video');
     
-    if (!video) return;
+    if (!videos.length) return;
     
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    video.play().catch(err => {
+                    entry.target.play().catch(err => {
                         console.log('Autoplay prevented:', err);
                     });
                 } else {
-                    video.pause();
+                    entry.target.pause();
                 }
             });
         },
@@ -498,7 +497,7 @@ function initVideoAutoplay() {
         }
     );
     
-    observer.observe(video);
+    videos.forEach(video => observer.observe(video));
 }
 
 // Initialize Smooth Scroll for Links
@@ -517,6 +516,80 @@ function initSmoothScroll() {
     });
 }
 
+// Initialize Hover Animations for Buttons
+function initButtonHoverAnimations() {
+    const animatedButtons = document.querySelectorAll('.pill--animated, .btn.pill--animated');
+    
+    animatedButtons.forEach(button => {
+        const animationSrc = button.dataset.animation;
+        
+        if (!animationSrc) return;
+        
+        // Create video element
+        const video = document.createElement('video');
+        video.className = 'pill--animated__video';
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        
+        const source = document.createElement('source');
+        source.src = animationSrc;
+        source.type = 'video/mp4';
+        
+        video.appendChild(source);
+        
+        // Handle video load error silently
+        video.addEventListener('error', (e) => {
+            // Silently fail - remove video element
+            if (video.parentNode) {
+                video.parentNode.removeChild(video);
+            }
+        });
+        
+        // Prepend video to button
+        button.insertBefore(video, button.firstChild);
+        
+        // Play on hover
+        button.addEventListener('mouseenter', () => {
+            video.play().catch(() => {
+                // Silently ignore play errors
+            });
+        });
+        
+        // Pause on leave
+        button.addEventListener('mouseleave', () => {
+            video.pause();
+            video.currentTime = 0;
+        });
+    });
+}
+
+// Initialize Hero Buy Image Switching
+function initHeroBuyImageSwitching() {
+    const heroBuyImage = document.getElementById('heroBuyImage');
+    const modelButtons = document.querySelectorAll('[data-variant-type="model"]');
+    
+    if (!heroBuyImage) return;
+    
+    modelButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const newImageSrc = this.dataset.image;
+            
+            if (newImageSrc && heroBuyImage) {
+                // Fade out
+                heroBuyImage.style.opacity = '0';
+                
+                // Change image after fade
+                setTimeout(() => {
+                    heroBuyImage.src = newImageSrc;
+                    // Fade in
+                    heroBuyImage.style.opacity = '1';
+                }, 300);
+            }
+        });
+    });
+}
+
 // Initialize All
 function init() {
     // Variant & Cart
@@ -528,13 +601,17 @@ function init() {
     
     // UI Elements
     initScrollCue();
-    initGalleryThumbnails();
+    // initGalleryThumbnails(); // Removed - no longer using thumbnails
     initBrandVideo();
     initAccordion();
     initLightbox();
     initStickyCart();
     initVideoAutoplay();
     initSmoothScroll();
+    
+    // New Features
+    initButtonHoverAnimations();
+    initHeroBuyImageSwitching();
     
     // Initial updates
     updatePriceDisplay();

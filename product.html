@@ -61,19 +61,16 @@
     <section id="hero-buy" class="hero-buy">
         <div class="container">
             <div class="hero-buy__grid">
-                <div class="hero-buy__media">
-                    <video 
-                        class="hero-buy__video" 
-                        poster="assets/high-energy.jpg" 
-                        muted 
-                        loop 
-                        playsinline
-                        data-autoplay-muted>
-                        <source src="assets/hero-animation.mp4" type="video/mp4">
-                    </video>
+                <div class="hero-buy__gallery">
+                    <img 
+                        src="assets/model-black.jpg" 
+                        alt="WARCHARGE model view" 
+                        class="hero-buy__main-img"
+                        id="heroBuyImage"
+                        loading="eager">
                 </div>
                 
-                <div class="hero-buy__content">
+                <div class="hero-buy__details">
                     <h1 class="hero-buy__title">buy your health</h1>
                     <p class="hero-buy__subtitle">Engineered comfort meets instant climate control for peak performance anywhere.</p>
                     
@@ -108,29 +105,20 @@
                     
                     <!-- Variant Selectors -->
                     <div class="variant-group">
-                        <label class="variant-group__label">Size</label>
-                        <div class="variant-pills" role="radiogroup" aria-label="Select size">
-                            <button class="pill pill--active" role="radio" aria-checked="true" data-variant-type="size" data-value="m">M</button>
-                            <button class="pill" role="radio" aria-checked="false" data-variant-type="size" data-value="l">L</button>
-                            <button class="pill" role="radio" aria-checked="false" data-variant-type="size" data-value="xl">XL</button>
-                        </div>
-                    </div>
-                    
-                    <div class="variant-group">
-                        <label class="variant-group__label">Color</label>
-                        <div class="variant-pills" role="radiogroup" aria-label="Select color">
-                            <button class="pill pill--active" role="radio" aria-checked="true" data-variant-type="color" data-value="black">Black</button>
-                            <button class="pill" role="radio" aria-checked="false" data-variant-type="color" data-value="stone">Stone</button>
-                            <button class="pill" role="radio" aria-checked="false" data-variant-type="color" data-value="sage">Sage</button>
+                        <label class="variant-group__label">Model Color</label>
+                        <div class="variant-pills" role="radiogroup" aria-label="Select model color">
+                            <button class="pill pill--active pill--animated" role="radio" aria-checked="true" data-variant-type="model" data-value="black" data-image="assets/model-black.jpg" data-animation="assets/btn-anim-1.mp4">Black</button>
+                            <button class="pill pill--animated" role="radio" aria-checked="false" data-variant-type="model" data-value="white" data-image="assets/model-white.jpg" data-animation="assets/btn-anim-2.mp4">White</button>
+                            <button class="pill pill--animated" role="radio" aria-checked="false" data-variant-type="model" data-value="violet" data-image="assets/model-violet.jpg" data-animation="assets/btn-anim-3.mp4">Violet</button>
                         </div>
                     </div>
                     
                     <div class="variant-group">
                         <label class="variant-group__label">Bundle</label>
                         <div class="variant-pills" role="radiogroup" aria-label="Select bundle">
-                            <button class="pill pill--active" role="radio" aria-checked="true" data-variant-type="bundle" data-value="solo">Solo</button>
-                            <button class="pill" role="radio" aria-checked="false" data-variant-type="bundle" data-value="duo">Duo (Save 15%)</button>
-                            <button class="pill" role="radio" aria-checked="false" data-variant-type="bundle" data-value="family">Family (Save 25%)</button>
+                            <button class="pill pill--active pill--animated" role="radio" aria-checked="true" data-variant-type="bundle" data-value="solo" data-animation="assets/btn-anim-4.mp4">Solo</button>
+                            <button class="pill pill--animated" role="radio" aria-checked="false" data-variant-type="bundle" data-value="duo" data-animation="assets/btn-anim-5.mp4">Duo (Save 15%)</button>
+                            <button class="pill pill--animated" role="radio" aria-checked="false" data-variant-type="bundle" data-value="family" data-animation="assets/btn-anim-6.mp4">Family (Save 25%)</button>
                         </div>
                     </div>
                     
@@ -160,13 +148,8 @@
                     
                     <!-- CTAs -->
                     <div class="cta-group">
-                        <button class="btn btn--primary" id="addToCart" data-analytics="add-to-cart">Add to Cart</button>
-                        <button class="btn btn--secondary" id="buyNow" data-analytics="buy-now">Buy Now</button>
-                    </div>
-                    
-                    <div class="micro-copy">
-                        <p>✓ Free shipping on orders over $50</p>
-                        <p>✓ 30-day money-back guarantee</p>
+                        <button class="btn btn--primary pill--animated" id="addToCart" data-analytics="add-to-cart" data-animation="assets/btn-anim-7.mp4">Add to Cart</button>
+                        <button class="btn btn--secondary pill--animated" id="buyNow" data-analytics="buy-now" data-animation="assets/btn-anim-8.mp4">Buy Now</button>
                     </div>
                     
                     <button class="scroll-cue" aria-label="Scroll to benefits">
@@ -244,19 +227,16 @@
                         class="hero-product__main-img"
                         id="mainProductImage"
                         loading="lazy">
-                    <div class="hero-product__thumbnails">
-                        <button class="thumb thumb--active" data-src="assets/high-energy.jpg">
-                            <img src="assets/product-main.jpg" alt="View 1" loading="lazy">
-                        </button>
-                        <button class="thumb" data-src="assets/high-energy.jpg">
-                            <img src="assets/high-energy.jpg" alt="View 2" loading="lazy">
-                        </button>
-                        <button class="thumb" data-src="assets/high-energy.jpg">
-                            <img src="assets/high-energy.jpg" alt="View 3" loading="lazy">
-                        </button>
-                        <button class="thumb" data-src="assets/high-energy.jpg">
-                            <img src="assets/high-energy.jpg" alt="View 4" loading="lazy">
-                        </button>
+                    <div class="hero-product__animation">
+                        <video 
+                            class="hero-product__video" 
+                            poster="assets/high-energy.jpg" 
+                            muted 
+                            loop 
+                            autoplay
+                            playsinline>
+                            <source src="assets/hero-animation.mp4" type="video/mp4">
+                        </video>
                     </div>
                 </div>
                 
@@ -466,12 +446,6 @@
             
             <div class="dna-grid">
                 <article class="dna-tile">
-                    <div class="dna-tile__icon">🌍</div>
-                    <h3 class="dna-tile__title">HONOR IN GIVING</h3>
-                    <p class="dna-tile__text">We believe strength means nothing without compassion. A portion of every purchase goes directly to causes that uplift lives and restore balance. Because true power gives back. <a href="google.com">[Learn More]</a></p>
-                </article>
-                
-                <article class="dna-tile">
                     <div class="dna-tile__icon">🤝</div>
                     <h3 class="dna-tile__title">ACCOUNTABILITY</h3>
                     <p class="dna-tile__text">We stand behind every decision, every product, and every promise. From guaranteed quality to full warranty coverage, transparent service, and a no-hassle return policy. When you choose AIROX, you’re fully protected.</p>
@@ -481,6 +455,12 @@
                     <div class="dna-tile__icon">💎</div>
                     <h3 class="dna-tile__title">EXCELLENCE</h3>
                     <p class="dna-tile__text">Our work is an expression of obsession for precision, comfort, and durability. Every piece we create stands as a testament to what happens when passion meets precision. We build to last and to impress, time after time.</p>
+                </article>
+
+                <article class="dna-tile">
+                    <div class="dna-tile__icon">🌍</div>
+                    <h3 class="dna-tile__title">HONOR IN GIVING</h3>
+                    <p class="dna-tile__text">We believe strength means nothing without compassion. A portion of every purchase goes directly to causes that uplift lives and restore balance. Because true power gives back. <a href="google.com">[Learn More]</a></p>
                 </article>
             </div>
             
