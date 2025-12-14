@@ -4064,6 +4064,32 @@ p {
     letter-spacing: 1px;
 }
 
+/* Shopify Buy Button Container Overrides */
+#product-component-1764860843692 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+@media (max-width: 767px) {
+    #product-component-1764860843692 {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 1rem;
+    }
+    
+    #product-component-1764860843692 iframe {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Override Shopify's inline styles if needed */
+    [data-shopify-buy-ui] {
+        width: 100% !important;
+    }
+}
+
 /* Mobile-specific navbar behavior for product page */
 @media (max-width: 767px) {
     #navbarProduct {
@@ -4071,7 +4097,7 @@ p {
         top: 0;
         left: 0;
         right: 0;
-        background-color: rgba(0, 0, 0, 0.16) !important;
+        background-color: rgba(0, 0, 0, 0.14) !important;
         transition: none;
     }
     
@@ -4118,8 +4144,10 @@ p {
 #addtocart.cta-btn-wrapper button.buy-cta {
 position: relative !important;
 border: 17px solid !important;
-border-image: linear-gradient(to bottom, rgb(255, 200, 100), rgb(255, 80, 0)) 1 !important;
-background-color: rgb(28, 0, 60) !important;
+border-image: linear-gradient(to bottom, rgb(255, 241, 216), rgb(255, 80, 0)) 1 !important;
+/*border-image: linear-gradient(to bottom, rgb(135, 200, 203), rgb(255, 220, 205)) 1 !important;*/
+/*background-color: rgb(28, 0, 60) !important;*/
+background-color: rgb(4, 31, 82) !important;
 overflow: hidden !important;
 transition: border-image 0s, background-color 0.2s, box-shadow 0.1s !important;
 border-radius: 20px !important;
