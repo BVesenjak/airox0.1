@@ -2670,18 +2670,18 @@ p {
 }
 
 .pill:hover {
-    border-color: cyan;
+    border-color: rgb(153, 255, 255);
 }
 
 .pill:focus-visible {
-    outline: 2px solid cyan;
+    outline: 2px solid rgb(153, 255, 255);
     outline-offset: 2px;
 }
 
 .pill--active {
-    border-color: cyan;
-    background-color: rgba(0, 255, 255, 0.1);
-    color: cyan;
+    border-color: rgb(153, 255, 255);
+    background-color: rgba(0, 174, 255, 0.156);
+    color: rgb(153, 255, 255);
 }
 
 /* Animated Pills with Hover Video */
