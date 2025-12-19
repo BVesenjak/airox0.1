@@ -2874,6 +2874,53 @@ p {
     color: var(--white);
 }
 
+/* TOGGLE  SWITCH*/
+.toggle-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.toggle-switch input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-switch__slider {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    background: #ccc;
+    border-radius: 13px;
+    transition: background 0.3s;
+}
+
+.toggle-switch__slider::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch__slider {
+    background: #4CAF50;
+}
+
+.toggle-switch input[type="checkbox"]:checked + .toggle-switch__slider::after {
+    transform: translateX(24px);
+}
+
+.toggle-switch__label {
+    font-size: 16px;
+    color: #333;
+}
+
+
 /* CTAs */
 .cta-group {
     display: flex;
@@ -4196,3 +4243,70 @@ transition: opacity 0s ease !important;
     }
   }
     */
+
+.variant-pills--bundle button {
+    width: 49%;
+    height:100px;
+    text-align: left;
+}
+
+/* Color Variant Pills - Always in 1 row */
+.variant-pills--color {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.pill--color {
+    flex: 1 1 0;
+    min-width: 0;
+    white-space: nowrap;
+    position: relative;
+    padding-bottom: 14px !important; /* Extra space for the line */
+}
+
+/* Colored line indicator at bottom (only when selected) */
+.pill--color.pill--active::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 65%;
+    height: 3px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Stealth (Black) */
+.pill--color[data-value="black"].pill--active::after {
+    background-color: #000000;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Arctic (White) */
+.pill--color[data-value="white"].pill--active::after {
+    background-color: #ffffff;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+/* Ion (Violet) */
+.pill--color[data-value="violet"].pill--active::after {
+    background-color: #9b59b6;
+    box-shadow: 0 0 6px rgba(155, 89, 182, 0.8);
+}
+
+/* Mobile: Keep pills compact and in one row */
+@media (max-width: 576px) {
+    .variant-pills--color {
+        gap: 6px;
+    }
+    
+    .pill--color {
+        font-size: 0.8rem;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+}
