@@ -1519,10 +1519,10 @@
         /**
          * Show temporary hint text under edit button
          * ONE-TIME PER SESSION: only shows on first completion
-         * Fades in (200ms), stays for 3s, fades out (400ms)
+         * Hint displays for 3s, button glow lasts 4s
          */
         function showEditHint() {
-            if (!els.editHint) return;
+            if (!els.editHint || !els.editBtn) return;
             
             // Check if hint has already been shown this session
             const hintShown = sessionStorage.getItem('editHintShown');
@@ -1533,21 +1533,27 @@
             // Mark as shown for this session (won't show after reload)
             sessionStorage.setItem('editHintShown', 'true');
             
-            // Fade in: 200ms
+            // Apply glow effect to button text (synchronized with hint appearance)
             setTimeout(() => {
+                els.editBtn.classList.add('edit-btn--glow');
                 els.editHint.classList.add('edit-hint--show');
             }, 100);
             
-            // After 3 seconds, fade out: 400ms
+            // After 3 seconds, fade out hint
             setTimeout(() => {
                 els.editHint.classList.remove('edit-hint--show');
                 els.editHint.classList.add('edit-hint--fadeout');
                 
-                // Clean up classes after fade-out completes
+                // Clean up hint classes after fade-out completes
                 setTimeout(() => {
                     els.editHint.classList.remove('edit-hint--fadeout');
                 }, 400);
             }, 3100); // 100ms initial + 3000ms display
+            
+            // After 4 seconds, remove button glow (1s longer than hint)
+            setTimeout(() => {
+                els.editBtn.classList.remove('edit-btn--glow');
+            }, 4100); // 100ms initial + 4000ms glow
         }
         
         /**

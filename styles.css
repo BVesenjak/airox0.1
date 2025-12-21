@@ -4420,6 +4420,13 @@ transition: opacity 0s ease !important;
     transform: translateY(0);
 }
 
+/* Synchronized glow when hint appears - matches hover effect */
+.edit-btn--glow {
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 0 12px rgba(153, 255, 255, 0.25);
+    transition: all 0.28s ease-out;
+}
+
 .edit-icon {
     font-size: 0.9em;
     opacity: 0.8;
