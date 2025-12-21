@@ -4280,10 +4280,13 @@ transition: opacity 0s ease !important;
     transition: all 0.3s ease;
 }
 
-/* Stealth (Black) */
+/* Stealth (Black) - Stronger glow to compensate for optical illusion */
 .pill--color[data-value="black"].pill--active::after {
     background-color: #000000;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+    box-shadow: 
+        0 0 8px rgba(0, 0, 0, 0.9),
+        0 0 12px rgba(0, 0, 0, 0.6),
+        0 0 16px rgba(0, 0, 0, 0.4);
 }
 
 /* Arctic (White) */
@@ -4309,4 +4312,27 @@ transition: opacity 0s ease !important;
         padding-left: 10px !important;
         padding-right: 10px !important;
     }
+}
+
+/* Progressive Lock-In Animations */
+#progressiveColorSelector {
+    transition: opacity 0.15s ease, max-height 0.3s ease;
+}
+
+#colorFeedback {
+    transition: opacity 0.15s ease;
+    min-height: 20px;
+}
+
+#colorSelectionSummary {
+    transition: opacity 0.15s ease;
+}
+
+/* Smooth pill transitions during selection */
+.pill--color {
+    transition: all 0.12s ease !important;
+}
+
+.pill--color:active {
+    transform: scale(0.95);
 }
